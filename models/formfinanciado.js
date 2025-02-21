@@ -11,11 +11,11 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       FormFinanciado.belongsTo(models.User, {
         as: "Users",
-        foreignKey: "UsersId",
+        foreignKey: "UserId",
       });
       FormFinanciado.hasOne(models.ReportFinanciado, {
         as: "FormFinanciados",
-        foreignKey: "FormFinanciadosId",
+        foreignKey: "FormFinanciadoId",
         onDelete: "CASCADE",
       });
     }

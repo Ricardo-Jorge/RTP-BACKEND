@@ -71,14 +71,12 @@ const getFormsAlugado = async (req, res) => {
     const UserId = req.user.id;
     const forms = await FormAlugado.findAll({
       where: { UserId },
-      order: [["createdAt", "DESC"]], // opcional: ordenar por data de criação
+      order: [["createdAt", "DESC"]], // ordenar por data de criação
     });
     return res.status(200).json(forms);
   } catch (error) {
-    console.error("Erro ao buscar formulários:", error);
-    return res
-      .status(500)
-      .json({ errors: "Erro ao buscar formulários", error });
+    console.error(error);
+    return res.status(500).json({ errors: "Erro ao buscar formulários" });
   }
 };
 
@@ -128,6 +126,8 @@ const updateForm = async (req, res) => {
 
     res.status(200).json({ form });
   } catch (error) {
+    console.error(error);
+
     return res.status(500).json({ errors: "Erro ao atualizar formulário." });
   }
 };
@@ -150,10 +150,8 @@ const deleteFormAlugado = async (req, res) => {
       .status(200)
       .json({ message: "Formulário deletado com sucesso." });
   } catch (error) {
-    console.error("Erro ao deletar formulário:", error);
-    return res
-      .status(500)
-      .json({ errors: "Erro ao deletar formulário", error });
+    console.error(error);
+    return res.status(500).json({ errors: "Erro ao deletar formulário" });
   }
 };
 

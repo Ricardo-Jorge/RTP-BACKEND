@@ -11,11 +11,11 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       FormQuitado.belongsTo(models.User, {
         as: "Users",
-        foreignKey: "UsersId",
+        foreignKey: "UserId",
       });
       FormQuitado.hasOne(models.ReportQuitado, {
         as: "FormQuitados",
-        foreignKey: "FormQuitadosId",
+        foreignKey: "FormQuitadoId",
         onDelete: "CASCADE",
       });
     }

@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       ReportQuitado.belongsTo(models.FormQuitado, {
         as: "FormQuitados",
-        foreignKey: "FormQuitadosId",
+        foreignKey: "FormQuitadoId",
       });
     }
   }
