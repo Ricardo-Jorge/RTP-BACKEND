@@ -9,17 +9,17 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasOne(models.FormAlugado, {
+      User.hasMany(models.FormAlugado, {
         as: "FormAlugados",
         foreignKey: "UserId",
         onDelete: "CASCADE",
       });
-      User.hasOne(models.FormFinanciado, {
+      User.hasMany(models.FormFinanciado, {
         as: "FormFinanciados",
         foreignKey: "UserId",
         onDelete: "CASCADE",
       });
-      User.hasOne(models.FormQuitado, {
+      User.hasMany(models.FormQuitado, {
         as: "FormQuitados",
         foreignKey: "UserId",
         onDelete: "CASCADE",

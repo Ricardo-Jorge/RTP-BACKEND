@@ -5,15 +5,11 @@ const User = models.User;
 // Criar Formulário
 const createFormFinanciado = async (req, res) => {
   try {
-    const reqUser = req.user;
+    console.log("Usuário logado:", req.user);
 
-    const user = await User.findByPk(reqUser.id);
-
-    if (!req.User) {
+    if (!req.user) {
       return res.status(401).json({ errors: "Usuário não autenticado" });
     }
-
-    console.log("Usuário logado:", req.User);
 
     // Obter os dados do formulário enviados no body
     const {
@@ -30,6 +26,11 @@ const createFormFinanciado = async (req, res) => {
       kilometragemMes,
     } = req.body;
 
+    const reqUser = req.user;
+
+    const user = await User.findByPk(reqUser.id);
+    console.log(reqUser.id);
+
     // Cria novo formulário no DB
     const newForm = await FormFinanciado.create({
       lucroEsperado,
@@ -43,7 +44,7 @@ const createFormFinanciado = async (req, res) => {
       manutencao,
       parcelaFinanciamento,
       kilometragemMes,
-      UserID: user.id,
+      UserId: user.id,
     });
 
     return res.status(201).json({
@@ -80,7 +81,7 @@ const getFormsFinanciado = async (req, res) => {
 };
 
 // Editar Formulário
-const updateForm = async (req, res) => {
+const updateFormFinanciado = async (req, res) => {
   try {
     const UserId = req.user.id;
     const { id } = req.params;
@@ -152,11 +153,11 @@ const updateForm = async (req, res) => {
 // Deletar formulário
 const deleteFormFinanciado = async (req, res) => {
   try {
-    const UserId = req.user.id;
     const { id } = req.params; // id do formulário a ser deletado
+    const UserId = req.user.id;
 
     // Procura o formulário garantindo que ele pertence ao usuário logado
-    const form = await FormAlugado.findOne({ where: { id, UserId } });
+    const form = await FormFinanciado.findOne({ where: { id, UserId } });
     if (!form) {
       return res.status(404).json({ errors: "Formulário não encontrado." });
     }
@@ -175,6 +176,6 @@ const deleteFormFinanciado = async (req, res) => {
 module.exports = {
   createFormFinanciado,
   getFormsFinanciado,
-  updateForm,
+  updateFormFinanciado,
   deleteFormFinanciado,
 };
