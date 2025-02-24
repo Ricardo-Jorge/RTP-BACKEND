@@ -9,7 +9,7 @@ const createReportAlugado = async (req, res) => {
     const reqUser = req.user;
 
     if (!reqUser) {
-      return res.status(401).json({ errors: "Usuário não autenticado" });
+      return res.status(401).json({ errors: "Usuário não autenticado." });
     }
     // Supondo que o ID do formAlugado venha como parâmetro na rota
     const { id } = req.params;
@@ -55,10 +55,9 @@ const createReportAlugado = async (req, res) => {
     // Retornar o relatório criado para o usuário
     return res.status(200).json(novoReport);
   } catch (error) {
-    console.error("Erro ao gerar o relatório:", error);
+    console.error(error);
     return res.status(500).json({
-      message: "Erro ao processar o relatório.",
-      errors: error.message,
+      errors: "Erro ao processar o relatório.",
     });
   }
 };
@@ -68,15 +67,16 @@ const getReportsAlugado = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const reports = await ReportAlugado.findAll({
+    const reports = await ReportAlugado.findOne({
       where: { FormAlugadoId: id },
     });
     if (!reports) {
-      return res.status(404).json({ errors: "Relatórios não encontrados." });
+      return res.status(404).json({ errors: "Relatório não encontrado." });
     }
     return res.status(200).json(reports);
   } catch (error) {
-    return res.status(500).json({ errors: "Erro ao buscar relatórios." });
+    console.error(error);
+    return res.status(500).json({ errors: "Erro ao buscar relatório." });
   }
 };
 

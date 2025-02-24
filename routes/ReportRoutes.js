@@ -10,11 +10,23 @@ const {
 // Middleware
 const validate = require("../middlewares/handleValidation");
 const authGuard = require("../middlewares/authGuard");
+const {
+  createReportFinanciado,
+  getReportFinanciado,
+} = require("../controllers/reportFinanciadoController");
 
+// Rotas (ALUGADO)
 // Rota criação Report
-router.post("/", authGuard, validate, createReportAlugado);
+router.post("/a", authGuard, validate, createReportAlugado);
 
 // Rota Busca de Relatórios
-router.get("/", authGuard, validate, getReportsAlugado);
+router.get("/a", authGuard, validate, getReportsAlugado);
+
+// Rotas (FINANCIADO)
+// Rota criação Report
+router.post("/f", authGuard, validate, createReportFinanciado);
+
+// Rota busca Report
+router.get("/f", authGuard, validate, getReportFinanciado);
 
 module.exports = router;

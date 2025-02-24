@@ -17,17 +17,56 @@ module.exports = (sequelize, DataTypes) => {
   }
   ReportFinanciado.init(
     {
-      custoFinanciamentoDia: DataTypes.DECIMAL,
-      custoImpostosDia: DataTypes.DECIMAL,
-      seguroDia: DataTypes.DECIMAL,
-      manutencaoDia: DataTypes.DECIMAL,
-      custoCombustivel: DataTypes.DECIMAL,
-      custoCombustivelDia: DataTypes.DECIMAL,
-      custoTotalDia: DataTypes.DECIMAL,
-      custoTotal: DataTypes.DECIMAL,
-      faturamentoTotal: DataTypes.DECIMAL,
-      faturamentoDia: DataTypes.DECIMAL,
-      faturamentoKm: DataTypes.DECIMAL,
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER,
+      },
+      custoFinanciamentoDia: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false,
+      },
+      custoImpostosDia: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false,
+      },
+      seguroDia: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false,
+      },
+      manutencaoDia: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false,
+      },
+      custoCombustivel: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false,
+      },
+      custoCombustivelDia: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false,
+      },
+      custoTotalDia: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false,
+      },
+      custoTotal: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false,
+      },
+      faturamentoTotal: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false,
+      },
+      faturamentoDia: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false,
+      },
+      faturamentoKm: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false,
+      },
     },
     {
       sequelize,

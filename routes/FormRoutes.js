@@ -23,7 +23,7 @@ const validate = require("../middlewares/handleValidation");
 const authGuard = require("../middlewares/authGuard");
 const FormFinanciadoValidate = require("../middlewares/FormFinanciadoValidation");
 
-// Rotas (Financiado)
+// Rotas (FINANCIADO)
 // Rota para Ciar Form
 router.post(
   "/financiado",
@@ -48,7 +48,7 @@ router.put(
 // Rota Delete Form
 router.delete("/financiado/:id", authGuard, validate, deleteFormFinanciado);
 
-// Rotas (alugado)
+// Rotas (ALUGADO)
 // Rota para criar Form
 router.post(
   "/alugado",
@@ -75,5 +75,6 @@ router.delete("/alugado/:id", authGuard, validate, deleteFormAlugado);
 
 // Monta as rotas de relatórios aninhadas
 router.use("/alugado/:id/report", require("./ReportRoutes"));
+router.use("/financiado/:id/report", require("./ReportRoutes"));
 
 module.exports = router;

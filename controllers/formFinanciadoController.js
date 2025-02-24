@@ -31,6 +31,17 @@ const createFormFinanciado = async (req, res) => {
     const user = await User.findByPk(reqUser.id);
     console.log(reqUser.id);
 
+    const existingForms = await FormAlugado.count({
+      where: { UserId: user.id },
+    });
+
+    if (existingForms >= 1) {
+      return res.status(400).json({
+        errors:
+          "Você já atingiu o limite de Formulários. Limite de UM Formulário por categoria.",
+      });
+    }
+
     // Cria novo formulário no DB
     const newForm = await FormFinanciado.create({
       lucroEsperado,
