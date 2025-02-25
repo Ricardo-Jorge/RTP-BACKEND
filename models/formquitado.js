@@ -13,11 +13,6 @@ module.exports = (sequelize, DataTypes) => {
         as: "Users",
         foreignKey: "UserId",
       });
-      FormQuitado.hasOne(models.ReportQuitado, {
-        as: "FormQuitados",
-        foreignKey: "FormQuitadoId",
-        onDelete: "CASCADE",
-      });
     }
   }
   FormQuitado.init(

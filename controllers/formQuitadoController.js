@@ -1,17 +1,16 @@
 const models = require("../models/index");
-const FormFinanciado = models.FormFinanciado;
+const FormQuitado = models.FormQuitado;
 const User = models.User;
 
 // Criar Formulário
-const createFormFinanciado = async (req, res) => {
+const createFormQuitado = async (req, res) => {
   try {
-    console.log("Usuário logado:", req.user);
-
+    console.log("Usuário Logado: ", req.user);
     if (!req.user) {
-      return res.status(401).json({ errors: "Usuário não autenticado." });
+      return res.status(401).json({ message: "Usuário não autenticado." });
     }
 
-    // Obter os dados do formulário enviados no body
+    // Obter os dados do formulário através do body
     const {
       lucroEsperado,
       precoCombustivel,
@@ -22,16 +21,14 @@ const createFormFinanciado = async (req, res) => {
       licenciamento,
       seguro,
       manutencao,
-      parcelaFinanciamento,
       kilometragemMes,
     } = req.body;
 
     const reqUser = req.user;
+    const user = await User.fidByPk(reqUser.id);
 
-    const user = await User.findByPk(reqUser.id);
-    console.log(reqUser.id);
-
-    const existingForms = await FormAlugado.count({
+    // Limitação de criação de Formulário por User
+    const existingForms = await FormQuitado.count({
       where: { UserId: user.id },
     });
 
@@ -42,8 +39,8 @@ const createFormFinanciado = async (req, res) => {
       });
     }
 
-    // Cria novo formulário no DB
-    const newForm = await FormFinanciado.create({
+    // Cria novo Formulário no DB
+    const newForm = await FormQuitado.create({
       lucroEsperado,
       precoCombustivel,
       consumo,
@@ -53,34 +50,34 @@ const createFormFinanciado = async (req, res) => {
       licenciamento,
       seguro,
       manutencao,
-      parcelaFinanciamento,
       kilometragemMes,
       UserId: user.id,
     });
 
-    return res.status(201).json({
-      message: "Formulário criado com sucesso.",
-      form: newForm,
-    });
+    return res
+      .status(201)
+      .json({ message: "Formulário criado com sucesso.", form: newForm });
   } catch (error) {
     console.error(error);
     return res.status(500).json({
-      errors: "Erro ao criar Formulário, tente novamente mais tarde.",
+      errors: "Erro ao criar formulário, tente novamente mais tarde.",
     });
   }
 };
 
-// Buscar os Formulários do Usuário
-const getFormsFinanciado = async (req, res) => {
+// Buscar of Dormulários do Usuário
+const getFormsQuitado = async (req, res) => {
   try {
     const UserId = req.user.id;
-    const forms = await FormFinanciado.findAll({
+    const forms = await FormQuitado.findAll({
       where: { UserId },
       order: [["createdAt", "DESC"]],
     });
 
     if (!forms) {
-      return res.send(404).json({ errors: "Formulário(s) não encontrado(s)" });
+      return res
+        .send(404)
+        .json({ message: "Formulário(s) não encontrado(s)." });
     }
     return res.status(200).json(forms);
   } catch (error) {
@@ -92,7 +89,7 @@ const getFormsFinanciado = async (req, res) => {
 };
 
 // Editar Formulário
-const updateFormFinanciado = async (req, res) => {
+const updateFormQuitado = async (req, res) => {
   try {
     const UserId = req.user.id;
     const { id } = req.params;
@@ -106,11 +103,10 @@ const updateFormFinanciado = async (req, res) => {
       licenciamento,
       seguro,
       manutencao,
-      parcelaFinanciamento,
       kilometragemMes,
     } = req.body;
 
-    const form = await FormFinanciado.findOne({ where: { id, UserId } });
+    const form = await FormQuitado.findOne({ where: { id, UserId } });
     if (!form) {
       return res.status(404).json({ errors: "Formulário não encontrado." });
     }
@@ -142,9 +138,6 @@ const updateFormFinanciado = async (req, res) => {
     if (manutencao) {
       form.manutencao = manutencao;
     }
-    if (parcelaFinanciamento) {
-      form.parcelaFinanciamento = parcelaFinanciamento;
-    }
     if (kilometragemMes) {
       form.kilometragemMes = kilometragemMes;
     }
@@ -161,14 +154,14 @@ const updateFormFinanciado = async (req, res) => {
   }
 };
 
-// Deletar formulário
-const deleteFormFinanciado = async (req, res) => {
+// Deletar Formulário
+const deleteFormQuitado = async (req, res) => {
   try {
     const { id } = req.params; // id do formulário a ser deletado
     const UserId = req.user.id;
 
     // Procura o formulário garantindo que ele pertence ao usuário logado
-    const form = await FormFinanciado.findOne({ where: { id, UserId } });
+    const form = await FormQuitado.findOne({ where: { id, UserId } });
     if (!form) {
       return res.status(404).json({ errors: "Formulário não encontrado." });
     }
@@ -185,8 +178,8 @@ const deleteFormFinanciado = async (req, res) => {
 };
 
 module.exports = {
-  createFormFinanciado,
-  getFormsFinanciado,
-  updateFormFinanciado,
-  deleteFormFinanciado,
+  createFormQuitado,
+  getFormsQuitado,
+  updateFormQuitado,
+  deleteFormQuitado,
 };
