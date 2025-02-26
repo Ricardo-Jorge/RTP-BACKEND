@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       ReportAlugado.belongsTo(models.FormAlugado, {
         as: "FormAlugados",
         foreignKey: "FormAlugadoId",
+        onDelete: "CASCADE",
       });
     }
   }

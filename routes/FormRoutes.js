@@ -16,14 +16,46 @@ const {
   deleteFormFinanciado,
 } = require("../controllers/formFinanciadoController");
 
+const {
+  createFormQuitado,
+  getFormsQuitado,
+  updateFormQuitado,
+  deleteFormQuitado,
+} = require("../controllers/formQuitadoController");
+
 // Middleware
 const formAlugadoValidate = require("../middlewares/FormAlugadoValidation");
 const formFinanciadoValidate = require("../middlewares/FormFinanciadoValidation");
+const formQuitadoValidate = require("../middlewares/formQuitadoValidation");
 const validate = require("../middlewares/handleValidation");
 const authGuard = require("../middlewares/authGuard");
-const FormFinanciadoValidate = require("../middlewares/FormFinanciadoValidation");
 
-// Rotas (FINANCIADO)
+// (Quitado)
+// Rota para Criar Form
+router.post(
+  "/quitado",
+  authGuard,
+  formQuitadoValidate(),
+  validate,
+  createFormQuitado
+);
+
+// Rota Busca Forms de User Loggado
+router.get("/quitado", authGuard, validate, getFormsQuitado);
+
+// Rota Update Form
+router.put(
+  "/quitado/:id",
+  authGuard,
+  formQuitadoValidate(),
+  validate,
+  updateFormQuitado
+);
+
+// Rota Delete Form
+router.delete("/quitado/:id", authGuard, validate, deleteFormQuitado);
+
+// (FINANCIADO)
 // Rota para Ciar Form
 router.post(
   "/financiado",
@@ -40,7 +72,7 @@ router.get("/financiado", authGuard, validate, getFormsFinanciado);
 router.put(
   "/financiado/:id",
   authGuard,
-  FormFinanciadoValidate(),
+  formFinanciadoValidate(),
   validate,
   updateFormFinanciado
 );
@@ -48,7 +80,7 @@ router.put(
 // Rota Delete Form
 router.delete("/financiado/:id", authGuard, validate, deleteFormFinanciado);
 
-// Rotas (ALUGADO)
+// (ALUGADO)
 // Rota para criar Form
 router.post(
   "/alugado",
@@ -76,5 +108,6 @@ router.delete("/alugado/:id", authGuard, validate, deleteFormAlugado);
 // Monta as rotas de relatórios aninhadas
 router.use("/alugado/:id/report", require("./ReportRoutes"));
 router.use("/financiado/:id/report", require("./ReportRoutes"));
+router.use("/quitado/:id/report", require("./ReportRoutes"));
 
 module.exports = router;

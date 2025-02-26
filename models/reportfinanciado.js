@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       ReportFinanciado.belongsTo(models.FormFinanciado, {
         as: "FormFinanciados",
         foreignKey: "FormFinanciadoId",
+        onDelete: "CASCADE",
       });
     }
   }

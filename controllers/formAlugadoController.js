@@ -5,8 +5,6 @@ const User = models.User;
 // Criar Formulário
 const createFormAlugado = async (req, res) => {
   try {
-    console.log("Usuário logado:", req.user);
-
     if (!req.user) {
       return res.status(401).json({ errors: "Usuário não autenticado" });
     }
@@ -30,13 +28,11 @@ const createFormAlugado = async (req, res) => {
       where: { UserId: user.id },
     });
 
-    if (existingForms >= 1) {
-      return res
-        .status(400)
-        .json({
-          errors:
-            "Você já atingiu o limite de Formulários. Limite de UM Formulário por categoria.",
-        });
+    if (existingForms >= 2) {
+      return res.status(400).json({
+        errors:
+          "Você já atingiu o limite de Formulários. Limite de DOIS Formulários por categoria.",
+      });
     }
 
     // Cria o novo formulário no banco de dados

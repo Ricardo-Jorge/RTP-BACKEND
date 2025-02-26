@@ -12,6 +12,7 @@ const createReportFinanciado = async (req, res) => {
       return res.status(401).json({ errors: "Usuário não autenticado." });
     }
 
+    // id do Formulário
     const { id } = req.params;
     if (!id) {
       return res
@@ -69,9 +70,10 @@ const createReportFinanciado = async (req, res) => {
   }
 };
 
-// Buscar todos Relatórios
+// Buscar todo Relatório
 const getReportFinanciado = async (req, res) => {
   try {
+    // id do Report
     const { id } = req.params;
 
     const report = await ReportFinanciado.findOne({

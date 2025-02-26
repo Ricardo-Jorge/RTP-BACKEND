@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       FormQuitado.belongsTo(models.User, {
         as: "Users",
         foreignKey: "UserId",
+        onDelete: "CASCADE",
       });
     }
   }

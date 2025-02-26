@@ -12,10 +12,6 @@ module.exports = (sequelize, DataTypes) => {
       FormAlugado.belongsTo(models.User, {
         as: "Users",
         foreignKey: "UserId",
-      });
-      FormAlugado.hasOne(models.ReportAlugado, {
-        as: "FormAlugados",
-        foreignKey: "FormAlugadoId",
         onDelete: "CASCADE",
       });
     }
