@@ -1,5 +1,10 @@
 require("dotenv").config();
 
+const swaggerJsdoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
+const postmanToOpenApi = require("postman-to-openapi");
+
+const swaggerJson = require("./openapi.json");
 const express = require("express");
 const cors = require("cors");
 
@@ -24,6 +29,33 @@ require("./models/index");
 
 // routes
 const router = require("./routes/Router");
+
+// API Documentation
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerJson));
+
+app.get("/swagger-json", (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  res.send(swaggerJson);
+});
+
+app.get("/generate-yml", async (req, res) => {
+  const postmanCollection = "collection.json";
+
+  const outputFile = "collection.yml";
+
+  try {
+    const result = await postmanToOpenApi(postmanCollection, outputFile, {
+      defaultTag: "General",
+    });
+
+    const result2 = await postmanToOpenApi(postmanCollection, null, {
+      defaultTag: "General",
+    });
+    console.log(`OpenAPI specs: ${result}`);
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 app.use(router);
 

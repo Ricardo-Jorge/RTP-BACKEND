@@ -1,0 +1,665 @@
+{
+	"info": {
+		"_postman_id": "d775da4a-d8f2-4acc-a828-659271063b35",
+		"name": "Road to Profit",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38469198"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Ricardo\",\r\n    \"email\": \"teste@email.com\",\r\n  \"password\": \"123456\",\r\n  \"confirmPassword\": \"123456\",\r\n  \"isPremium\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/users/register",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"teste@email.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/users/login",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Ricardo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/users/update",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Forms",
+			"item": [
+				{
+					"name": "Alugado",
+					"item": [
+						{
+							"name": "Create Form",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{  \r\n  \"lucroEsperado\": 5000,\r\n  \"valorFranquiaSem\": 754,\r\n  \"precoCombustivel\": 6.76,\r\n  \"consumo\": 14,\r\n  \"diasTrabalhadosSem\": 6,\r\n  \"horasTrabalhadas\": 10,\r\n  \"kilometragemSem\": 2000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/v1/forms/alugado",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"alugado"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Forms",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/v1/forms/alugado",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"alugado"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Form",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{  \r\n  \"lucroEsperado\": 4000,\r\n  \"valorFranquiaSem\": 564,\r\n  \"precoCombustivel\": 6,\r\n  \"consumo\": 13,\r\n  \"diasTrabalhadosSem\": 6,\r\n  \"horasTrabalhadas\": 12,\r\n  \"kilometragemSem\": 1500\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/v1/forms/alugado/5",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"alugado",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Form",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/forms/alugado/3",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"forms",
+										"alugado",
+										"3"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Financiado",
+					"item": [
+						{
+							"name": "Create Form",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"lucroEsperado\": 5000,\r\n    \"precoCombustivel\": 6.35,\r\n    \"consumo\": 13.5,\r\n    \"folgasMensal\": 4,\r\n    \"horasTrabalhadas\": 9,\r\n    \"ipva\": 1450,\r\n    \"licenciamento\": 130,\r\n    \"seguro\":350,\r\n    \"manutencao\": 500,\r\n    \"parcelaFinanciamento\": 1450,\r\n    \"kilometragemMes\": 5000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/v1/forms/financiado",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"financiado"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Forms",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/v1/forms/financiado",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"financiado"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Forms",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"lucroEsperado\": 5000,\r\n    \"precoCombustivel\": 4.56,\r\n    \"consumo\": 13.5,\r\n    \"folgasMensal\": 8,\r\n    \"horasTrabalhadas\": 8,\r\n    \"ipva\": 2800,\r\n    \"licenciamento\": 230,\r\n    \"seguro\":350,\r\n    \"manutencao\": 500,\r\n    \"parcelaFinanciamento\": 1450,\r\n    \"kilometragemMes\": 5000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/v1/forms/financiado/5",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"financiado",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Form",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/v1/forms/financiado/1",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"financiado",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Quitado",
+					"item": [
+						{
+							"name": "Create Form",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"lucroEsperado\": 6000,\r\n    \"precoCombustivel\": 6.35,\r\n    \"consumo\": 13.5,\r\n    \"folgasMensal\": 4,\r\n    \"horasTrabalhadas\": 9,\r\n    \"ipva\": 1450,\r\n    \"licenciamento\": 130,\r\n    \"seguro\":350,\r\n    \"manutencao\": 500,\r\n    \"kilometragemMes\": 6000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/v1/forms/quitado",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"quitado"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Forms",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/v1/forms/quitado",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"quitado"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Forms",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"lucroEsperado\": 6000,\r\n    \"precoCombustivel\": 6.35,\r\n    \"consumo\": 13.5,\r\n    \"folgasMensal\": 4,\r\n    \"horasTrabalhadas\": 9,\r\n    \"ipva\": 1450,\r\n    \"licenciamento\": 250,\r\n    \"seguro\":250,\r\n    \"manutencao\": 800,\r\n    \"kilometragemMes\": 5000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/v1/forms/quitado/1",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"quitado",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Forms",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/v1/forms/quitado/1",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"quitado",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Reports",
+			"item": [
+				{
+					"name": "Alugado",
+					"item": [
+						{
+							"name": "Create Report",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/v1/forms/alugado/3/report/a",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"alugado",
+										"3",
+										"report",
+										"a"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Report",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/v1/forms/alugado/5/report/a",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"alugado",
+										"5",
+										"report",
+										"a"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Financiado",
+					"item": [
+						{
+							"name": "Create Report",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/v1/forms/financiado/5/report/f",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"financiado",
+										"5",
+										"report",
+										"f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Report",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/v1/forms/financiado/6/report/f",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"financiado",
+										"6",
+										"report",
+										"f"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Quitado",
+					"item": [
+						{
+							"name": "Create Report",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/v1/forms/quitado/2/report/q",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"quitado",
+										"2",
+										"report",
+										"q"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Report",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/v1/forms/quitado/1/report/q",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"forms",
+										"quitado",
+										"1",
+										"report",
+										"q"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQwMTc2NDMyLCJleHAiOjE3NDA3ODEyMzJ9.aRy7Wv5En0IoFDktuQWAZb6Vih8Dk8-ZqclhcM7XtfM",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "http://localhost:5000",
+			"type": "string"
+		}
+	]
+}
