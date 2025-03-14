@@ -27,7 +27,7 @@ const userCreateValidation = () => {
       .withMessage("A senha é obrigatório.")
       .bail()
       .isLength({ min: 6 })
-      .withMessage("A senha precisa ter no mínimo 4 caracteres.")
+      .withMessage("A senha precisa ter no mínimo 6 caracteres.")
       .bail(),
     body("confirmPassword")
       .exists()
@@ -62,7 +62,7 @@ const userUpdateValidation = () => {
     body("password")
       .optional()
       .isLength({ min: 6 })
-      .withMessage("A senha precisa ter no mínimo 4 caracteres"),
+      .withMessage("A senha precisa ter no mínimo 6 caracteres"),
   ];
 };
 

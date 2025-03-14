@@ -1,14 +1,15 @@
 require("dotenv").config();
 
 const swaggerJsdoc = require("swagger-jsdoc");
+const swaggerJson = require("./openapi.json");
 const swaggerUi = require("swagger-ui-express");
 const postmanToOpenApi = require("postman-to-openapi");
 
-const swaggerJson = require("./openapi.json");
 const express = require("express");
 const cors = require("cors");
 
 const port = process.env.PORT;
+const frontPort = process.env.FRONT_PORT;
 
 const app = express();
 
@@ -19,7 +20,7 @@ app.use(express.json());
 app.use(
   cors({
     credentials: true,
-    origin: `http://localhost:5000`,
+    origin: `http://localhost:${frontPort}`,
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
