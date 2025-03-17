@@ -74,27 +74,39 @@ const register = async (req, res) => {
 
 // Sign user in
 const login = async (req, res) => {
-  // Busca email e a senha da requisição do usuário
-  const { email, password } = req.body;
+  try {
+    // Busca email e a senha da requisição do usuário
+    const { email, password } = req.body;
 
-  // Buscamos um usuário representado por esse email no DB e atribuimos a uma variavel user
-  const user = await User.findOne({ where: { email } });
+    if (!email || !password) {
+      return res
+        .status(400)
+        .json({ errors: "E-mail e Senha são obrigatórios." });
+    }
+    // Buscamos um usuário representado por esse email no DB e atribuimos a uma variavel user
+    const user = await User.findOne({ where: { email } });
 
-  // Verificação se usuario existe
-  if (!user) {
-    return res.status(404).json({ errors: ["Usuário não encontrado."] });
+    // Verificação se usuario existe
+    if (!user) {
+      return res.status(404).json({ errors: ["Usuário não encontrado."] });
+    }
+
+    // Verificação se as senhas batem
+    if (!(await bcrypt.compare(password, user.password))) {
+      return res.status(422).json({ errors: ["Senha inválida."] });
+    }
+
+    // Retorna user com token
+    res.status(201).json({
+      id: user.id,
+      token: generateToken(user.id),
+    });
+  } catch (error) {
+    console.error(error);
+    return res
+      .status(500)
+      .json({ errors: "Erro ao realizar Login, tente novamente mais tarde." });
   }
-
-  // Verificação se as senhas batem
-  if (!(await bcrypt.compare(password, user.password))) {
-    return res.status(422).json({ errors: ["Senha inválida."] });
-  }
-
-  // Retorna user com token
-  res.status(201).json({
-    id: user.id,
-    token: generateToken(user.id),
-  });
 };
 
 // Update user
