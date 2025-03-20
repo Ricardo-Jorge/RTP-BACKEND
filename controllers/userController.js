@@ -109,10 +109,20 @@ const login = async (req, res) => {
   }
 };
 
+// Get currently logged in user
+const getCurrentUser = async (req, res) => {
+  const user = req.user;
+
+  // Removendo a senha do objeto retornado (se necessário)
+  const { password: _, ...userWithoutPassword } = user.dataValues;
+
+  res.status(200).json({ user: userWithoutPassword });
+};
+
 // Update user
 const update = async (req, res) => {
   try {
-    const { name, password } = req.body;
+    const { name, password, confirmPassword } = req.body;
     const reqUser = req.user;
 
     const user = await User.findByPk(reqUser.id);
@@ -126,6 +136,17 @@ const update = async (req, res) => {
     }
 
     if (password) {
+      // Validação da confirmação da senha
+      if (!confirmPassword) {
+        return res
+          .status(400)
+          .json({ errors: "É necessário confirmar a senha." });
+      } else if (confirmPassword !== password) {
+        return res
+          .status(400)
+          .json({ errors: "Confirmação de senha inválida" });
+      }
+
       const salt = await bcrypt.genSalt();
       const passwordHash = await bcrypt.hash(password, salt);
       user.password = passwordHash;
@@ -145,4 +166,4 @@ const update = async (req, res) => {
   }
 };
 
-module.exports = { register, login, update };
+module.exports = { register, login, getCurrentUser, update };
