@@ -17,10 +17,10 @@ const register = async (req, res) => {
     const { name, email, password, confirmPassword, isPremium } = req.body;
 
     // 1. Validação básica dos campos
-    if ((!name, !email || !password || !confirmPassword)) {
+    if (!name || !email || !password || !confirmPassword) {
       return res
         .status(400)
-        .json({ errors: "E-mail e Senha são obrigatórios." });
+        .json({ errors: "Nome, e-mail e Senha são obrigatórios." });
     }
 
     // Validação de formato de email (exemplo simples)
