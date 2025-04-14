@@ -12,14 +12,17 @@ const custoAluguelDia = (formData) => {
 const custoCombustivelSem = (formData) => {
   const { kilometragemSem, consumo, precoCombustivel } = formData;
   if (!kilometragemSem || !consumo || !precoCombustivel) return 0;
-  return (kilometragemSem / consumo) * precoCombustivel;
+  return (
+    (parseFloat(kilometragemSem) / parseFloat(consumo)) *
+    parseFloat(precoCombustivel)
+  );
 };
 
 const consumoDiario = (formData) => {
   const { diasTrabalhadosSem } = formData;
   if (!diasTrabalhadosSem) return 0;
   const consumoSemanal = custoCombustivelSem(formData);
-  return consumoSemanal / diasTrabalhadosSem;
+  return consumoSemanal / parseFloat(diasTrabalhadosSem);
 };
 
 const faturamentoTotal = (formData) => {
@@ -45,7 +48,7 @@ const faturamentoHora = (formData) => {
 const faturamentoKm = (formData) => {
   const { kilometragemSem } = formData;
   if (!kilometragemSem) return 0;
-  const franquiaTotal = kilometragemSem * 4;
+  const franquiaTotal = parseFloat(kilometragemSem) * 4;
   const faturamentoTotalValue = faturamentoTotal(formData);
   return faturamentoTotalValue / franquiaTotal;
 };
