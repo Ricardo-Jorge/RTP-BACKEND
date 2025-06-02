@@ -29,7 +29,7 @@ const createFormFinanciado = async (req, res) => {
     const user = await User.findByPk(reqUser.id);
     console.log(reqUser.id);
 
-    const existingForms = await FormAlugado.count({
+    const existingForms = await FormFinanciado.count({
       where: { UserId: user.id },
     });
 

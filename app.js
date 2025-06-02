@@ -1,7 +1,7 @@
 require("dotenv").config();
 
 const swaggerJsdoc = require("swagger-jsdoc");
-const swaggerJson = require("./openapi.json");
+const swaggerJson = require("./collection.json");
 const swaggerUi = require("swagger-ui-express");
 const postmanToOpenApi = require("postman-to-openapi");
 

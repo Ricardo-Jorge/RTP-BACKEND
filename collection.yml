@@ -1,0 +1,472 @@
+openapi: 3.0.0
+info:
+  title: Road to Profit
+  version: 1.0.0
+servers:
+  - url: http://{{url}}
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+security:
+  - bearerAuth: []
+tags:
+  - name: User
+  - name: Forms
+  - name: Forms > Alugado
+  - name: Forms > Financiado
+  - name: Forms > Quitado
+  - name: Reports
+  - name: Reports > Alugado
+  - name: Reports > Financiado
+  - name: Reports > Quitado
+paths:
+  /api/v1/users/register:
+    post:
+      tags:
+        - User
+      summary: Create User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Swagger Doc Test
+                email: teste@swagger.com
+                password: '123456'
+                confirmPassword: '123456'
+                isPremium: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/login:
+    post:
+      tags:
+        - User
+      summary: Login User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: teste@swagger.com
+                password: '123456'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/update:
+    put:
+      tags:
+        - User
+      summary: Update User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Testador
+                password: '123456'
+                confirmPassword: '123456'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/profile:
+    get:
+      tags:
+        - User
+      summary: Get Current User
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/forms/alugado:
+    post:
+      tags:
+        - Forms > Alugado
+      summary: Create Form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                lucroEsperado: 6000
+                valorFranquiaSem: 754
+                precoCombustivel: 6.76
+                consumo: 14
+                diasTrabalhadosSem: 6
+                horasTrabalhadas: 10
+                kilometragemSem: 2000
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Forms > Alugado
+      summary: Get Forms
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/forms/alugado/{id}:
+    put:
+      tags:
+        - Forms > Alugado
+      summary: Update Form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                lucroEsperado: 8000
+                valorFranquiaSem: 564
+                precoCombustivel: 6
+                consumo: 11
+                diasTrabalhadosSem: 6
+                horasTrabalhadas: 12
+                kilometragemSem: 1500
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          description: Form id to be updated.
+          example: '10'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Forms > Alugado
+      summary: Delete Form
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          description: Form id to be deleted.
+          example: '9'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/forms/financiado:
+    post:
+      tags:
+        - Forms > Financiado
+      summary: Create Form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                lucroEsperado: 8000
+                precoCombustivel: 6.77
+                consumo: 11.5
+                folgasMensal: 4
+                horasTrabalhadas: 11
+                ipva: 1450
+                licenciamento: 130
+                seguro: 350
+                manutencao: 500
+                parcelaFinanciamento: 1750
+                kilometragemMes: 5000
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Forms > Financiado
+      summary: Get Forms
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/forms/financiado/{id}:
+    put:
+      tags:
+        - Forms > Financiado
+      summary: Update Forms
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                lucroEsperado: 5000
+                precoCombustivel: 4.56
+                consumo: 13.5
+                folgasMensal: 8
+                horasTrabalhadas: 11
+                ipva: 2800
+                licenciamento: 230
+                seguro: 350
+                manutencao: 500
+                parcelaFinanciamento: 1450
+                kilometragemMes: 5000
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          description: Form id to be updated.
+          example: '7'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Forms > Financiado
+      summary: Delete Form
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          description: Form id to be deleted.
+          example: '7'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/forms/quitado:
+    post:
+      tags:
+        - Forms > Quitado
+      summary: Create Form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                lucroEsperado: 8000
+                precoCombustivel: 6.35
+                consumo: 13.5
+                folgasMensal: 4
+                horasTrabalhadas: 9
+                ipva: 1450
+                licenciamento: 130
+                seguro: 350
+                manutencao: 500
+                kilometragemMes: 6000
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Forms > Quitado
+      summary: Get Forms
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/forms/quitado/{id}:
+    put:
+      tags:
+        - Forms > Quitado
+      summary: Update Forms
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                lucroEsperado: 6000
+                precoCombustivel: 6.35
+                consumo: 13.5
+                folgasMensal: 4
+                horasTrabalhadas: 9
+                ipva: 1450
+                licenciamento: 250
+                seguro: 250
+                manutencao: 800
+                kilometragemMes: 5000
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          description: Form id to be updated
+          example: '4'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Forms > Quitado
+      summary: Delete Forms
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          description: Form id to be deleted.
+          example: '4'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/forms/alugado/{id}/report/a:
+    post:
+      tags:
+        - Reports > Alugado
+      summary: Create Report
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example: ''
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          description: Id from the form to create the report.
+          example: '10'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Reports > Alugado
+      summary: Get Report
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          description: Form Id.
+          example: '10'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/forms/financiado/{id}/report/f:
+    post:
+      tags:
+        - Reports > Financiado
+      summary: Create Report
+      requestBody:
+        content:
+          text/plain: {}
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          description: Id from the form to create the report.
+          example: '7'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Reports > Financiado
+      summary: Get Report
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          description: Report id.
+          example: '8'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/forms/quitado/{id}/report/q:
+    post:
+      tags:
+        - Reports > Quitado
+      summary: Create Report
+      requestBody:
+        content: {}
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          description: Id from the form to create the report.
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Reports > Quitado
+      summary: Get Report
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          description: Report id.
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /:
+    get:
+      tags:
+        - General
+      summary: Test route
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}

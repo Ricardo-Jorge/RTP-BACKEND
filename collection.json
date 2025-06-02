@@ -1,665 +1,687 @@
 {
-	"info": {
-		"_postman_id": "d775da4a-d8f2-4acc-a828-659271063b35",
-		"name": "Road to Profit",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "38469198"
-	},
-	"item": [
-		{
-			"name": "User",
-			"item": [
-				{
-					"name": "Create User",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Ricardo\",\r\n    \"email\": \"teste@email.com\",\r\n  \"password\": \"123456\",\r\n  \"confirmPassword\": \"123456\",\r\n  \"isPremium\": false\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/api/v1/users/register",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"register"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Login User",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"teste@email.com\",\r\n    \"password\": \"123456\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/api/v1/users/login",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update User",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Ricardo\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/api/users/update",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"users",
-								"update"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Forms",
-			"item": [
-				{
-					"name": "Alugado",
-					"item": [
-						{
-							"name": "Create Form",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{  \r\n  \"lucroEsperado\": 5000,\r\n  \"valorFranquiaSem\": 754,\r\n  \"precoCombustivel\": 6.76,\r\n  \"consumo\": 14,\r\n  \"diasTrabalhadosSem\": 6,\r\n  \"horasTrabalhadas\": 10,\r\n  \"kilometragemSem\": 2000\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{URL}}/api/v1/forms/alugado",
-									"host": [
-										"{{URL}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"forms",
-										"alugado"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get Forms",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{URL}}/api/v1/forms/alugado",
-									"host": [
-										"{{URL}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"forms",
-										"alugado"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Update Form",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{  \r\n  \"lucroEsperado\": 4000,\r\n  \"valorFranquiaSem\": 564,\r\n  \"precoCombustivel\": 6,\r\n  \"consumo\": 13,\r\n  \"diasTrabalhadosSem\": 6,\r\n  \"horasTrabalhadas\": 12,\r\n  \"kilometragemSem\": 1500\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{URL}}/api/v1/forms/alugado/5",
-									"host": [
-										"{{URL}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"forms",
-										"alugado",
-										"5"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Delete Form",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "{{URL}}/api/forms/alugado/3",
-									"host": [
-										"{{URL}}"
-									],
-									"path": [
-										"api",
-										"forms",
-										"alugado",
-										"3"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Financiado",
-					"item": [
-						{
-							"name": "Create Form",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"lucroEsperado\": 5000,\r\n    \"precoCombustivel\": 6.35,\r\n    \"consumo\": 13.5,\r\n    \"folgasMensal\": 4,\r\n    \"horasTrabalhadas\": 9,\r\n    \"ipva\": 1450,\r\n    \"licenciamento\": 130,\r\n    \"seguro\":350,\r\n    \"manutencao\": 500,\r\n    \"parcelaFinanciamento\": 1450,\r\n    \"kilometragemMes\": 5000\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{URL}}/api/v1/forms/financiado",
-									"host": [
-										"{{URL}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"forms",
-										"financiado"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get Forms",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{URL}}/api/v1/forms/financiado",
-									"host": [
-										"{{URL}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"forms",
-										"financiado"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Update Forms",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"lucroEsperado\": 5000,\r\n    \"precoCombustivel\": 4.56,\r\n    \"consumo\": 13.5,\r\n    \"folgasMensal\": 8,\r\n    \"horasTrabalhadas\": 8,\r\n    \"ipva\": 2800,\r\n    \"licenciamento\": 230,\r\n    \"seguro\":350,\r\n    \"manutencao\": 500,\r\n    \"parcelaFinanciamento\": 1450,\r\n    \"kilometragemMes\": 5000\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{URL}}/api/v1/forms/financiado/5",
-									"host": [
-										"{{URL}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"forms",
-										"financiado",
-										"5"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Delete Form",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "{{URL}}/api/v1/forms/financiado/1",
-									"host": [
-										"{{URL}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"forms",
-										"financiado",
-										"1"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Quitado",
-					"item": [
-						{
-							"name": "Create Form",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"lucroEsperado\": 6000,\r\n    \"precoCombustivel\": 6.35,\r\n    \"consumo\": 13.5,\r\n    \"folgasMensal\": 4,\r\n    \"horasTrabalhadas\": 9,\r\n    \"ipva\": 1450,\r\n    \"licenciamento\": 130,\r\n    \"seguro\":350,\r\n    \"manutencao\": 500,\r\n    \"kilometragemMes\": 6000\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{URL}}/api/v1/forms/quitado",
-									"host": [
-										"{{URL}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"forms",
-										"quitado"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get Forms",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{URL}}/api/v1/forms/quitado",
-									"host": [
-										"{{URL}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"forms",
-										"quitado"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Update Forms",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"lucroEsperado\": 6000,\r\n    \"precoCombustivel\": 6.35,\r\n    \"consumo\": 13.5,\r\n    \"folgasMensal\": 4,\r\n    \"horasTrabalhadas\": 9,\r\n    \"ipva\": 1450,\r\n    \"licenciamento\": 250,\r\n    \"seguro\":250,\r\n    \"manutencao\": 800,\r\n    \"kilometragemMes\": 5000\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{URL}}/api/v1/forms/quitado/1",
-									"host": [
-										"{{URL}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"forms",
-										"quitado",
-										"1"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Delete Forms",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "{{URL}}/api/v1/forms/quitado/1",
-									"host": [
-										"{{URL}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"forms",
-										"quitado",
-										"1"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "Reports",
-			"item": [
-				{
-					"name": "Alugado",
-					"item": [
-						{
-							"name": "Create Report",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{URL}}/api/v1/forms/alugado/3/report/a",
-									"host": [
-										"{{URL}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"forms",
-										"alugado",
-										"3",
-										"report",
-										"a"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get Report",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{URL}}/api/v1/forms/alugado/5/report/a",
-									"host": [
-										"{{URL}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"forms",
-										"alugado",
-										"5",
-										"report",
-										"a"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Financiado",
-					"item": [
-						{
-							"name": "Create Report",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"url": {
-									"raw": "{{URL}}/api/v1/forms/financiado/5/report/f",
-									"host": [
-										"{{URL}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"forms",
-										"financiado",
-										"5",
-										"report",
-										"f"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get Report",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{URL}}/api/v1/forms/financiado/6/report/f",
-									"host": [
-										"{{URL}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"forms",
-										"financiado",
-										"6",
-										"report",
-										"f"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Quitado",
-					"item": [
-						{
-							"name": "Create Report",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"url": {
-									"raw": "{{URL}}/api/v1/forms/quitado/2/report/q",
-									"host": [
-										"{{URL}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"forms",
-										"quitado",
-										"2",
-										"report",
-										"q"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get Report",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{URL}}/api/v1/forms/quitado/1/report/q",
-									"host": [
-										"{{URL}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"forms",
-										"quitado",
-										"1",
-										"report",
-										"q"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "New Request",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{URL}}/",
-					"host": [
-						"{{URL}}"
-					],
-					"path": [
-						""
-					]
-				}
-			},
-			"response": []
-		}
-	],
-	"auth": {
-		"type": "bearer",
-		"bearer": [
-			{
-				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQwMTc2NDMyLCJleHAiOjE3NDA3ODEyMzJ9.aRy7Wv5En0IoFDktuQWAZb6Vih8Dk8-ZqclhcM7XtfM",
-				"type": "string"
-			}
-		]
-	},
-	"event": [
-		{
-			"listen": "prerequest",
-			"script": {
-				"type": "text/javascript",
-				"packages": {},
-				"exec": [
-					""
-				]
-			}
-		},
-		{
-			"listen": "test",
-			"script": {
-				"type": "text/javascript",
-				"packages": {},
-				"exec": [
-					""
-				]
-			}
-		}
-	],
-	"variable": [
-		{
-			"key": "URL",
-			"value": "http://localhost:5000",
-			"type": "string"
-		}
-	]
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Road to Profit",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "User"
+    },
+    {
+      "name": "Forms"
+    },
+    {
+      "name": "Forms > Alugado"
+    },
+    {
+      "name": "Forms > Financiado"
+    },
+    {
+      "name": "Forms > Quitado"
+    },
+    {
+      "name": "Reports"
+    },
+    {
+      "name": "Reports > Alugado"
+    },
+    {
+      "name": "Reports > Financiado"
+    },
+    {
+      "name": "Reports > Quitado"
+    }
+  ],
+  "paths": {
+    "/api/v1/users/register": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Create User",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "name": "Swagger Doc Test",
+                  "email": "teste@swagger.com",
+                  "password": "123456",
+                  "confirmPassword": "123456",
+                  "isPremium": false
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/login": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Login User",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "email": "teste@swagger.com",
+                  "password": "123456"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/update": {
+      "put": {
+        "tags": ["User"],
+        "summary": "Update User",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "name": "Testador",
+                  "password": "123456",
+                  "confirmPassword": "123456"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/profile": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Get Current User",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/forms/alugado": {
+      "post": {
+        "tags": ["Forms > Alugado"],
+        "summary": "Create Form",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "lucroEsperado": 6000,
+                  "valorFranquiaSem": 754,
+                  "precoCombustivel": 6.76,
+                  "consumo": 14,
+                  "diasTrabalhadosSem": 6,
+                  "horasTrabalhadas": 10,
+                  "kilometragemSem": 2000
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Forms > Alugado"],
+        "summary": "Get Forms",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/forms/alugado/{id}": {
+      "put": {
+        "tags": ["Forms > Alugado"],
+        "summary": "Update Form",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "lucroEsperado": 8000,
+                  "valorFranquiaSem": 564,
+                  "precoCombustivel": 6,
+                  "consumo": 11,
+                  "diasTrabalhadosSem": 6,
+                  "horasTrabalhadas": 12,
+                  "kilometragemSem": 1500
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "Form id to be updated.",
+            "example": "10"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Forms > Alugado"],
+        "summary": "Delete Form",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "Form id to be deleted.",
+            "example": "9"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/forms/financiado": {
+      "post": {
+        "tags": ["Forms > Financiado"],
+        "summary": "Create Form",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "lucroEsperado": 8000,
+                  "precoCombustivel": 6.77,
+                  "consumo": 11.5,
+                  "folgasMensal": 4,
+                  "horasTrabalhadas": 11,
+                  "ipva": 1450,
+                  "licenciamento": 130,
+                  "seguro": 350,
+                  "manutencao": 500,
+                  "parcelaFinanciamento": 1750,
+                  "kilometragemMes": 5000
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Forms > Financiado"],
+        "summary": "Get Forms",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/forms/financiado/{id}": {
+      "put": {
+        "tags": ["Forms > Financiado"],
+        "summary": "Update Forms",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "lucroEsperado": 5000,
+                  "precoCombustivel": 4.56,
+                  "consumo": 13.5,
+                  "folgasMensal": 8,
+                  "horasTrabalhadas": 11,
+                  "ipva": 2800,
+                  "licenciamento": 230,
+                  "seguro": 350,
+                  "manutencao": 500,
+                  "parcelaFinanciamento": 1450,
+                  "kilometragemMes": 5000
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "Form id to be updated.",
+            "example": "7"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Forms > Financiado"],
+        "summary": "Delete Form",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "Form id to be deleted.",
+            "example": "7"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/forms/quitado": {
+      "post": {
+        "tags": ["Forms > Quitado"],
+        "summary": "Create Form",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "lucroEsperado": 8000,
+                  "precoCombustivel": 6.35,
+                  "consumo": 13.5,
+                  "folgasMensal": 4,
+                  "horasTrabalhadas": 9,
+                  "ipva": 1450,
+                  "licenciamento": 130,
+                  "seguro": 350,
+                  "manutencao": 500,
+                  "kilometragemMes": 6000
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Forms > Quitado"],
+        "summary": "Get Forms",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/forms/quitado/{id}": {
+      "put": {
+        "tags": ["Forms > Quitado"],
+        "summary": "Update Forms",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "lucroEsperado": 6000,
+                  "precoCombustivel": 6.35,
+                  "consumo": 13.5,
+                  "folgasMensal": 4,
+                  "horasTrabalhadas": 9,
+                  "ipva": 1450,
+                  "licenciamento": 250,
+                  "seguro": 250,
+                  "manutencao": 800,
+                  "kilometragemMes": 5000
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "Form id to be updated",
+            "example": "4"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Forms > Quitado"],
+        "summary": "Delete Forms",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "Form id to be deleted.",
+            "example": "4"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/forms/alugado/{id}/report/a": {
+      "post": {
+        "tags": ["Reports > Alugado"],
+        "summary": "Create Report",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": ""
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "Id from the form to create the report.",
+            "example": "10"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Reports > Alugado"],
+        "summary": "Get Report",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "Form Id.",
+            "example": "10"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/forms/financiado/{id}/report/f": {
+      "post": {
+        "tags": ["Reports > Financiado"],
+        "summary": "Create Report",
+        "requestBody": {
+          "content": {
+            "text/plain": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "Id from the form to create the report.",
+            "example": "7"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Reports > Financiado"],
+        "summary": "Get Report",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "Report id.",
+            "example": "8"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/forms/quitado/{id}/report/q": {
+      "post": {
+        "tags": ["Reports > Quitado"],
+        "summary": "Create Report",
+        "requestBody": {
+          "content": {}
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "Id from the form to create the report.",
+            "example": "5"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Reports > Quitado"],
+        "summary": "Get Report",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "Report id.",
+            "example": "5"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "tags": ["General"],
+        "summary": "Test route",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    }
+  }
 }
