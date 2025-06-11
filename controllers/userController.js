@@ -20,13 +20,13 @@ const register = async (req, res) => {
     if (!name || !email || !password || !confirmPassword) {
       return res
         .status(400)
-        .json({ errors: "Nome, e-mail e Senha são obrigatórios." });
+        .json({ errors: ["Nome, e-mail e Senha são obrigatórios."] });
     }
 
     // Validação de formato de email (exemplo simples)
     const emailRegex = /\S+@\S+\.\S+/;
     if (!emailRegex.test(email)) {
-      return res.status(400).json({ errors: "Formato de E-mail inválido." });
+      return res.status(400).json({ errors: ["Formato de E-mail inválido."] });
     }
 
     // Validação da senha
@@ -38,12 +38,14 @@ const register = async (req, res) => {
 
     // Validação da confirmação da senha
     if (confirmPassword !== password) {
-      return res.status(400).json({ errors: "Confirmação de senha inválida" });
+      return res
+        .status(400)
+        .json({ errors: ["Confirmação de senha inválida"] });
     }
 
     const userExists = await User.findOne({ where: { email } });
     if (userExists) {
-      return res.status(400).json({ errors: "Usuário já existe" });
+      return res.status(400).json({ errors: ["Usuário já existe"] });
     }
 
     // 3. Criptografar a senha
@@ -68,7 +70,7 @@ const register = async (req, res) => {
     });
   } catch (error) {
     console.error("Erro ao criar usuário:", error);
-    return res.status(500).json({ errors: "Erro ao criar usuário", error });
+    return res.status(500).json({ errors: ["Erro ao criar usuário"], error });
   }
 };
 
@@ -81,7 +83,7 @@ const login = async (req, res) => {
     if (!email || !password) {
       return res
         .status(400)
-        .json({ errors: "E-mail e Senha são obrigatórios." });
+        .json({ errors: ["E-mail e Senha são obrigatórios."] });
     }
     // Buscamos um usuário representado por esse email no DB e atribuimos a uma variavel user
     const user = await User.findOne({ where: { email } });
@@ -105,7 +107,9 @@ const login = async (req, res) => {
     console.error(error);
     return res
       .status(500)
-      .json({ errors: "Erro ao realizar Login, tente novamente mais tarde." });
+      .json({
+        errors: ["Erro ao realizar Login, tente novamente mais tarde."],
+      });
   }
 };
 
@@ -127,7 +131,7 @@ const update = async (req, res) => {
 
     const user = await User.findByPk(reqUser.id);
     if (!user) {
-      return res.status(404).json({ errors: "Usuário não encontrado." });
+      return res.status(404).json({ errors: ["Usuário não encontrado."] });
     }
 
     // Se o usuário fizer uma requisição de alterção de nome, aqui determinamos que name(do model de user) sera atualizado.
@@ -140,11 +144,11 @@ const update = async (req, res) => {
       if (!confirmPassword) {
         return res
           .status(400)
-          .json({ errors: "É necessário confirmar a senha." });
+          .json({ errors: ["É necessário confirmar a senha."] });
       } else if (confirmPassword !== password) {
         return res
           .status(400)
-          .json({ errors: "Confirmação de senha inválida" });
+          .json({ errors: ["Confirmação de senha inválida"] });
       }
 
       const salt = await bcrypt.genSalt();
@@ -162,7 +166,9 @@ const update = async (req, res) => {
     });
   } catch (error) {
     console.error("Erro ao atualizar usuário:", error);
-    return res.status(500).json({ errors: "Erro ao atualizar usuário", error });
+    return res
+      .status(500)
+      .json({ errors: ["Erro ao atualizar usuário"], error });
   }
 };
 

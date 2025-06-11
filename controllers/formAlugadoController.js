@@ -6,7 +6,7 @@ const User = models.User;
 const createFormAlugado = async (req, res) => {
   try {
     if (!req.user) {
-      return res.status(401).json({ errors: "Usuário não autenticado" });
+      return res.status(401).json({ errors: ["Usuário não autenticado"] });
     }
 
     // Obtém os dados do formulário enviados no body
@@ -30,8 +30,9 @@ const createFormAlugado = async (req, res) => {
 
     if (existingForms >= 2) {
       return res.status(400).json({
-        errors:
+        errors: [
           "Você já atingiu o limite de Formulários. Limite de DOIS Formulários por categoria.",
+        ],
       });
     }
 
@@ -52,24 +53,9 @@ const createFormAlugado = async (req, res) => {
       form: newForm,
     });
   } catch (error) {
-    console.error("Erro ao criar formulário", error);
-
-    // Captura erros de validação do Sequelize
-    if (error.name === "SequelizeValidationError") {
-      const validationErrors = error.errors.map((err) => ({
-        field: err.path,
-        errors: err.message,
-      }));
-
-      return res.status(422).json({
-        message: "Erro de validação",
-        errors: validationErrors,
-      });
-    }
-
+    console.error(error);
     return res.status(500).json({
-      message: "Erro ao criar formulário",
-      errors: error.message,
+      errors: ["Erro ao criar formulário, tente novamente mais tarde."],
     });
   }
 };
@@ -85,7 +71,7 @@ const getFormsAlugado = async (req, res) => {
     return res.status(200).json(forms);
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ errors: "Erro ao buscar formulários" });
+    return res.status(500).json({ errors: ["Erro ao buscar formulários"] });
   }
 };
 
@@ -106,7 +92,7 @@ const updateForm = async (req, res) => {
 
     const form = await FormAlugado.findOne({ where: { id, UserId } });
     if (!form) {
-      return res.status(404).json({ errors: "Formulário não encontrado." });
+      return res.status(404).json({ errors: ["Formulário não encontrado."] });
     }
 
     if (lucroEsperado) {
@@ -137,7 +123,7 @@ const updateForm = async (req, res) => {
   } catch (error) {
     console.error(error);
 
-    return res.status(500).json({ errors: "Erro ao atualizar formulário." });
+    return res.status(500).json({ errors: ["Erro ao atualizar formulário."] });
   }
 };
 
@@ -150,7 +136,7 @@ const deleteFormAlugado = async (req, res) => {
     // Procura o formulário garantindo que ele pertence ao usuário logado
     const form = await FormAlugado.findOne({ where: { id, UserId } });
     if (!form) {
-      return res.status(404).json({ errors: "Formulário não encontrado." });
+      return res.status(404).json({ errors: ["Formulário não encontrado."] });
     }
 
     await form.destroy();
@@ -160,7 +146,7 @@ const deleteFormAlugado = async (req, res) => {
       .json({ message: "Formulário deletado com sucesso." });
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ errors: "Erro ao deletar formulário" });
+    return res.status(500).json({ errors: ["Erro ao deletar formulário"] });
   }
 };
 

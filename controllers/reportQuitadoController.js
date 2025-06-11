@@ -9,7 +9,7 @@ const createReportQuitado = async (req, res) => {
     const reqUser = req.user;
 
     if (!reqUser) {
-      return res.status(401).json({ errors: "Usuário não autenticado." });
+      return res.status(401).json({ errors: ["Usuário não autenticado."] });
     }
 
     // id do Formulário
@@ -17,12 +17,12 @@ const createReportQuitado = async (req, res) => {
     if (!id) {
       return res
         .status(400)
-        .json({ errors: "ID do formulário não fornecido." });
+        .json({ errors: ["ID do formulário não fornecido."] });
     }
 
     const formDataQuitado = await FormQuitado.findByPk(id);
     if (!formDataQuitado) {
-      return res.status(404).json({ errros: "Formulário não encontrado." });
+      return res.status(404).json({ errros: ["Formulário não encontrado."] });
     }
 
     const existingReport = await ReportQuitado.count({
@@ -32,7 +32,7 @@ const createReportQuitado = async (req, res) => {
     if (existingReport) {
       return res
         .status(400)
-        .json({ errors: "Já existe um relatório para este formulário ." });
+        .json({ errors: ["Já existe um relatório para este formulário ."] });
     }
 
     const reportQuitado = {
@@ -55,11 +55,11 @@ const createReportQuitado = async (req, res) => {
     const novoReport = await ReportQuitado.create(reportQuitado);
     return res
       .status(200)
-      .json({ message: "Relatório criado com sucesso.", novoReport });
+      .json({ message: ["Relatório criado com sucesso."], novoReport });
   } catch (error) {
     console.error(error);
     return res.status(500).json({
-      errors: "Erro ao processar o relatório.",
+      errors: ["Erro ao processar o relatório."],
     });
   }
 };
@@ -74,12 +74,12 @@ const getReportQuitado = async (req, res) => {
       where: { FormQuitadoId: id },
     });
     if (!report) {
-      return res.status(404).json({ errors: "Relatório não encontrado." });
+      return res.status(404).json({ errors: ["Relatório não encontrado."] });
     }
     return res.status(200).json(report);
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ errors: "Erro ao buscar relatório." });
+    return res.status(500).json({ errors: ["Erro ao buscar relatório."] });
   }
 };
 
