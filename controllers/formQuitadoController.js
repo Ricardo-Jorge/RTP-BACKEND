@@ -6,7 +6,7 @@ const User = models.User;
 const createFormQuitado = async (req, res) => {
   try {
     if (!req.user) {
-      return res.status(401).json({ message: "Usuário não autenticado." });
+      return res.status(401).json({ message: ["Usuário não autenticado."] });
     }
 
     // Obter os dados do formulário através do body
@@ -33,8 +33,9 @@ const createFormQuitado = async (req, res) => {
 
     if (existingForms >= 2) {
       return res.status(400).json({
-        errors:
+        errors: [
           "Você já atingiu o limite de Formulários. Limite de DOIS Formulários por categoria.",
+        ],
       });
     }
 
@@ -55,11 +56,11 @@ const createFormQuitado = async (req, res) => {
 
     return res
       .status(201)
-      .json({ message: "Formulário criado com sucesso.", form: newForm });
+      .json({ message: ["Formulário criado com sucesso."], form: newForm });
   } catch (error) {
     console.error(error);
     return res.status(500).json({
-      errors: "Erro ao criar formulário, tente novamente mais tarde.",
+      errors: ["Erro ao criar formulário, tente novamente mais tarde."],
     });
   }
 };
@@ -76,13 +77,13 @@ const getFormsQuitado = async (req, res) => {
     if (!forms) {
       return res
         .send(404)
-        .json({ message: "Formulário(s) não encontrado(s)." });
+        .json({ message: ["Formulário(s) não encontrado(s)."] });
     }
     return res.status(200).json(forms);
   } catch (error) {
     console.error(error);
     res.status(500).json({
-      errors: "Erro ao buscar Formulário(s), tente novamente mais tarde.",
+      errors: ["Erro ao buscar Formulário(s), tente novamente mais tarde."],
     });
   }
 };
@@ -107,7 +108,7 @@ const updateFormQuitado = async (req, res) => {
 
     const form = await FormQuitado.findOne({ where: { id, UserId } });
     if (!form) {
-      return res.status(404).json({ errors: "Formulário não encontrado." });
+      return res.status(404).json({ errors: ["Formulário não encontrado."] });
     }
 
     if (lucroEsperado) {
@@ -144,11 +145,11 @@ const updateFormQuitado = async (req, res) => {
     await form.save();
     res
       .status(200)
-      .json({ message: "Formulário atualizado com sucesso.", form: form });
+      .json({ message: ["Formulário atualizado com sucesso."], form: form });
   } catch (error) {
     console.error(error);
     return res.status(500).json({
-      errors: "Erro ao atualizar formulário, tente novamente mais tarde.",
+      errors: ["Erro ao atualizar formulário, tente novamente mais tarde."],
     });
   }
 };
@@ -162,17 +163,17 @@ const deleteFormQuitado = async (req, res) => {
     // Procura o formulário garantindo que ele pertence ao usuário logado
     const form = await FormQuitado.findOne({ where: { id, UserId } });
     if (!form) {
-      return res.status(404).json({ errors: "Formulário não encontrado." });
+      return res.status(404).json({ errors: ["Formulário não encontrado."] });
     }
 
     await form.destroy();
 
     return res
       .status(200)
-      .json({ message: "Formulário deletado com sucesso." });
+      .json({ message: ["Formulário deletado com sucesso."] });
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ errors: "Erro ao deletar formulário" });
+    return res.status(500).json({ errors: ["Erro ao deletar formulário"] });
   }
 };
 
