@@ -8,7 +8,7 @@ const postmanToOpenApi = require("postman-to-openapi");
 const express = require("express");
 const cors = require("cors");
 
-const port = process.env.PORT;
+const port = process.env.PORT_DOCKER;
 const frontPort = process.env.FRONT_PORT;
 
 const app = express();
@@ -61,5 +61,5 @@ app.get("/generate-yml", async (req, res) => {
 app.use(router);
 
 app.listen(port, () => {
-  console.log(`App rodando na porta ${port}`);
+  console.log(`Server running on ${port}`);
 });

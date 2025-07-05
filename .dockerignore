@@ -1,0 +1,11 @@
+# Ignora todos os arquivos com extensão .log
+*.log
+# Ignora o diretório node_modules
+node_modules/
+# Ignora o diretório dist, comumente usado para armazenar arquivos compilados
+dist/
+# Ignora arquivos temporários ou de cache gerados durante o desenvolvimento
+.tmp/
+.cache/
+# Ignora o arquivo .env que pode conter variáveis de ambiente sensíveis
+.env

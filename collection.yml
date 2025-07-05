@@ -3,7 +3,7 @@ info:
   title: Road to Profit
   version: 1.0.0
 servers:
-  - url: http://{{url}}
+  - url: http://localhost:8001
 components:
   securitySchemes:
     bearerAuth:
@@ -35,11 +35,11 @@ paths:
               example:
                 name: Swagger Doc Test
                 email: teste@swagger.com
-                password: '123456'
-                confirmPassword: '123456'
+                password: "123456"
+                confirmPassword: "123456"
                 isPremium: false
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -55,9 +55,9 @@ paths:
               type: object
               example:
                 email: teste@swagger.com
-                password: '123456'
+                password: "123456"
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -73,10 +73,10 @@ paths:
               type: object
               example:
                 name: Testador
-                password: '123456'
-                confirmPassword: '123456'
+                password: "123456"
+                confirmPassword: "123456"
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -86,7 +86,7 @@ paths:
         - User
       summary: Get Current User
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -109,7 +109,7 @@ paths:
                 horasTrabalhadas: 10
                 kilometragemSem: 2000
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -118,7 +118,7 @@ paths:
         - Forms > Alugado
       summary: Get Forms
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -147,9 +147,9 @@ paths:
             type: integer
           required: true
           description: Form id to be updated.
-          example: '10'
+          example: "10"
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -164,9 +164,9 @@ paths:
             type: integer
           required: true
           description: Form id to be deleted.
-          example: '9'
+          example: "9"
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -193,7 +193,7 @@ paths:
                 parcelaFinanciamento: 1750
                 kilometragemMes: 5000
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -202,7 +202,7 @@ paths:
         - Forms > Financiado
       summary: Get Forms
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -235,9 +235,9 @@ paths:
             type: integer
           required: true
           description: Form id to be updated.
-          example: '7'
+          example: "7"
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -252,9 +252,9 @@ paths:
             type: integer
           required: true
           description: Form id to be deleted.
-          example: '7'
+          example: "7"
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -280,7 +280,7 @@ paths:
                 manutencao: 500
                 kilometragemMes: 6000
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -289,7 +289,7 @@ paths:
         - Forms > Quitado
       summary: Get Forms
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -321,9 +321,9 @@ paths:
             type: integer
           required: true
           description: Form id to be updated
-          example: '4'
+          example: "4"
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -338,9 +338,9 @@ paths:
             type: integer
           required: true
           description: Form id to be deleted.
-          example: '4'
+          example: "4"
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -354,7 +354,7 @@ paths:
           application/json:
             schema:
               type: object
-              example: ''
+              example: ""
       parameters:
         - name: id
           in: path
@@ -362,9 +362,9 @@ paths:
             type: integer
           required: true
           description: Id from the form to create the report.
-          example: '10'
+          example: "10"
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -379,9 +379,9 @@ paths:
             type: integer
           required: true
           description: Form Id.
-          example: '10'
+          example: "10"
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -400,9 +400,9 @@ paths:
             type: integer
           required: true
           description: Id from the form to create the report.
-          example: '7'
+          example: "7"
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -417,9 +417,9 @@ paths:
             type: integer
           required: true
           description: Report id.
-          example: '8'
+          example: "8"
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -437,9 +437,9 @@ paths:
             type: integer
           required: true
           description: Id from the form to create the report.
-          example: '5'
+          example: "5"
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -454,9 +454,9 @@ paths:
             type: integer
           required: true
           description: Report id.
-          example: '5'
+          example: "5"
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -466,7 +466,7 @@ paths:
         - General
       summary: Test route
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}

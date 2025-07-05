@@ -1,0 +1,49 @@
+version: "3.8"
+
+services:
+  # Serviço do Banco de Dados Postgres
+  postgres-db:
+    image: postgres:15-alpine
+    container_name: RTP_DB
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER} # Substitua se for diferente
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      # Usa o mesmo volume que criamos para manter os dados
+      - rtp-db-data:/var/lib/postgresql/data
+    networks:
+      - rtp_network
+
+  # Serviço da sua API
+  rtp-api:
+    # Constrói a imagem a partir do seu Dockerfile local
+    build: .
+    container_name: RTP_API
+    restart: always
+    ports:
+      - "49160:8001"
+    depends_on:
+      # Garante que o banco de dados inicie antes da API
+      - postgres-db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_DOCKER_HOST: postgres-db # Usa o nome do serviço, não mais um nome fixo
+      POSTGRES_DB: ${POSTGRES_DB}
+      DB_PORT: 5432
+      PORT_DOCKER: ${PORT_DOCKER}
+      JWT_SECRET: ${JWT_SECRET}
+      NODE_ENV: ${NODE_ENV}
+    networks:
+      - rtp_network
+
+# Definição dos volumes e redes
+volumes:
+  rtp-db-data:
+    name: rtp-db-data
+
+networks:
+  rtp_network:
+    name: rtp_network

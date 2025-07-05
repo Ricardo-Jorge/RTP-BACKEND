@@ -1,4 +1,12 @@
+# Dependências do Node.js
+node_modules/
+
+# Arquivos de ambiente com segredos
 .env
-node_modules
-config
-seeders
+
+# Logs
+npm-debug.log
+*.log
+
+# Chaves de acesso (como a da AWS)
+*.pem
