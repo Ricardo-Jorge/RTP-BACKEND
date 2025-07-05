@@ -46,7 +46,8 @@ jobs:
             cd /home/ec2-user/app
 
             # Exporta a variável de ambiente com a tag da imagem correta
-            export IMAGE_TAG=${{ github.sha }}
+            IMAGE_TAG=${{ github.sha }} docker-compose pull rtp-api
+            IMAGE_TAG=${{ github.sha }} docker-compose up -d --no-deps rtp-api
 
             # Baixa a imagem mais recente do ECR
             docker-compose pull rtp-api
