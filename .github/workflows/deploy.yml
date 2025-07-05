@@ -49,12 +49,5 @@ jobs:
             IMAGE_TAG=${{ github.sha }} docker-compose pull rtp-api
             IMAGE_TAG=${{ github.sha }} docker-compose up -d --no-deps rtp-api
 
-            # Baixa a imagem mais recente do ECR
-            docker-compose pull rtp-api
-
-            # Sobe o container da API com a nova imagem
-            # --no-deps impede que o banco de dados seja recriado
-            docker-compose up -d --no-deps rtp-api
-
             # Limpa imagens antigas e não utilizadas
             docker image prune -af
