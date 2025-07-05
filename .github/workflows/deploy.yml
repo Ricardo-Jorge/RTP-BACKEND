@@ -7,7 +7,7 @@ on:
 
 env:
   # Substitua com o URI do seu ECR e o nome do repositório
-  ECR_REGISTRY: 562419492190.dkr.ecr.us-east-2.amazonaws.com/rtp-api
+  ECR_REGISTRY: 562419492190.dkr.ecr.us-east-2.amazonaws.com
   ECR_REPOSITORY: rtp-api
   IMAGE_TAG: ${{ github.sha }} # Usa o hash do commit como tag da imagem
 
