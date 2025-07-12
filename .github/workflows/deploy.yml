@@ -42,11 +42,19 @@ jobs:
           username: ${{ secrets.AWS_EC2_USER }}
           key: ${{ secrets.AWS_EC2_KEY }}
           script: |
-            # Navega para a pasta da aplicação no servidor
+            # Navega para a pasta da aplicação
             cd /home/ec2-user/app
 
-            # Exporta a variável de ambiente com a tag da imagem correta
-            IMAGE_TAG=${{ github.sha }} docker-compose up -d --force-recreate --no-deps rtp-api
+            # PASSO 1: Fazer login no ECR (garante que a autenticação esteja sempre válida)
+            aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin ${{ env.ECR_REGISTRY }}
 
-            # Limpa imagens antigas e não utilizadas
+            # PASSO 2: Puxar (pull) explicitamente a nova imagem com a tag do commit
+            # Isso força o download da imagem mais recente para o servidor.
+            docker pull ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
+
+            # PASSO 3: Subir os serviços.
+            # Como a imagem nova já está no servidor, o Compose irá usá-la para recriar o container.
+            IMAGE_TAG=${{ env.IMAGE_TAG }} docker-compose up -d --force-recreate --no-deps rtp-api
+
+            # PASSO 4: Limpar imagens antigas que não estão mais em uso no servidor
             docker image prune -af
