@@ -42,19 +42,28 @@ jobs:
           username: ${{ secrets.AWS_EC2_USER }}
           key: ${{ secrets.AWS_EC2_KEY }}
           script: |
-            # Navega para a pasta da aplicação
+            # Navega para a pasta da aplicação no servidor
             cd /home/ec2-user/app
 
-            # PASSO 1: Fazer login no ECR (garante que a autenticação esteja sempre válida)
+            # PASSO 1: Autentica o Docker do servidor no ECR
             aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin ${{ env.ECR_REGISTRY }}
 
-            # PASSO 2: Puxar (pull) explicitamente a nova imagem com a tag do commit
-            # Isso força o download da imagem mais recente para o servidor.
+            # PASSO 2: Baixa a nova imagem explicitamente
             docker pull ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
 
-            # PASSO 3: Subir os serviços.
-            # Como a imagem nova já está no servidor, o Compose irá usá-la para recriar o container.
+            # PASSO 3: Sobe a API com a nova imagem, forçando a recriação
             IMAGE_TAG=${{ env.IMAGE_TAG }} docker-compose up -d --force-recreate --no-deps rtp-api
 
-            # PASSO 4: Limpar imagens antigas que não estão mais em uso no servidor
+            # ---- PASSO CRÍTICO ADICIONADO AQUI ----
+            # Aguarda 10 segundos para garantir que a API tenha tempo de iniciar e se conectar ao banco
+            echo "Aguardando a API iniciar antes de rodar as migrações..."
+            sleep 10 
+
+            # Executa as migrações dentro do container da API recém-criado
+            echo "Rodando as migrações do banco de dados..."
+            docker-compose exec rtp-api npm run db:migrate
+
+            echo "Deploy concluído com sucesso!"
+
+            # Limpa imagens antigas do servidor
             docker image prune -af
