@@ -61,7 +61,7 @@ jobs:
 
             # Executa as migrações dentro do container da API recém-criado
             echo "Rodando as migrações do banco de dados..."
-            docker-compose exec rtp-api npm run db:migrate
+            docker-compose exec rtp-api npm run migrate
 
             echo "Deploy concluído com sucesso!"
 
