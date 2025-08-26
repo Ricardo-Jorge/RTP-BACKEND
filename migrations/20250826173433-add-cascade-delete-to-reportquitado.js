@@ -4,16 +4,16 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.removeConstraint(
-      "ReportAlugados",
-      "ReportAlugados_FormAlugadoId_fkey"
+      "ReportQuitados",
+      "ReportQuitados_FormQuitadoId_fkey"
     );
 
-    await queryInterface.addConstraint("ReportAlugados", {
-      fields: ["FormAlugadoId"],
+    await queryInterface.addConstraint("ReportQuitados", {
+      fields: ["FormQuitadoId"],
       type: "foreign key",
-      name: "ReportAlugados_FormAlugadoId_fkey",
+      name: "ReportQuitados_FormQuitadoId_fkey",
       references: {
-        table: "FormAlugados",
+        table: "FormQuitados",
         field: "id",
       },
       onDelete: "CASCADE",
@@ -23,16 +23,16 @@ module.exports = {
 
   async down(queryInterface, Sequelize) {
     await queryInterface.removeConstraint(
-      "ReportAlugados",
-      "ReportAlugados_FormAlugadoId_fkey"
+      "ReportQuitados",
+      "ReportQuitados_FormQuitadoId_fkey"
     );
 
-    await queryInterface.addConstraint("ReportAlugados", {
-      fields: ["FormAlugadoId"],
+    await queryInterface.addConstraint("ReportQuitados", {
+      fields: ["FormQuitadoId"],
       type: "foreign key",
-      name: "ReportAlugados_FormAlugadoId_fkey",
+      name: "ReportQuitados_FormQuitadoId_fkey",
       references: {
-        table: "FormAlugados",
+        table: "FormQuitados",
         field: "id",
       },
     });

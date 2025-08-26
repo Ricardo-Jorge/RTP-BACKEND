@@ -59,9 +59,7 @@ const createReportFinanciado = async (req, res) => {
     // Salvar o relatório no banco de dados
     const novoReport = await ReportFinanciado.create(reportFinanciado);
 
-    return res
-      .status(200)
-      .json({ message: ["Relatório criado com sucesso."], novoReport });
+    return res.status(200).json(novoReport);
   } catch (error) {
     console.error(error);
     return res.status(500).json({
@@ -89,4 +87,40 @@ const getReportFinanciado = async (req, res) => {
   }
 };
 
-module.exports = { createReportFinanciado, getReportFinanciado };
+const deleteReportFinanciadoByFormId = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const form = await models.FormFinanciado.findOne({
+      where: { id: id, UserId: req.user.id },
+    });
+
+    if (!form) {
+      return res
+        .status(404)
+        .json({ errors: ["Formulário associado não encontrado."] });
+    }
+
+    const deletedReport = await models.ReportFinanciado.destroy({
+      where: { FormFinanciadoId: id },
+    });
+
+    if (deletedReport === 0) {
+      return res
+        .status(200)
+        .json({ message: ["Nenhum relatório para deletar ou já deletado."] });
+    }
+    return res
+      .status(200)
+      .json({ message: ["Relatório antigo deletado com sucesso."] });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ errors: ["Erro ao deletar relatório."] });
+  }
+};
+
+module.exports = {
+  createReportFinanciado,
+  getReportFinanciado,
+  deleteReportFinanciadoByFormId,
+};

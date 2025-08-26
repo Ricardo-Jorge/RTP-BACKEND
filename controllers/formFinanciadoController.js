@@ -149,9 +149,7 @@ const updateFormFinanciado = async (req, res) => {
     }
 
     await form.save();
-    res
-      .status(200)
-      .json({ message: "Formulário atualizado com sucesso.", form: form });
+    res.status(200).json({ form: form });
   } catch (error) {
     console.error(error);
     return res.status(500).json({

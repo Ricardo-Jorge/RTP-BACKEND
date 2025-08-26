@@ -8,69 +8,49 @@ const formAlugadoValidate = () => {
       .isInt({ min: 1, max: 24 })
       .withMessage("Insira um número inteiro entre 1 e 24.")
       .bail()
-      .not()
-      .isString()
-      .withMessage("O valor desse campo não pode ser um texto."),
-
+      .not(),
     body("lucroEsperado")
       .exists()
       .withMessage("O campo é obrigatório.")
       .isFloat({ gt: 0 })
       .withMessage("O valor deve ser maior que zero.")
       .bail()
-      .not()
-      .isString()
-      .withMessage("O valor desse campo não pode ser um texto."),
-
+      .not(),
     body("valorFranquiaSem")
       .exists()
       .withMessage("O campo é obrigatório.")
       .isFloat({ gt: 0 })
       .withMessage("O valor deve ser maior que zero.")
       .bail()
-      .not()
-      .isString()
-      .withMessage("O valor desse campo não pode ser um texto."),
-
+      .not(),
     body("kilometragemSem")
       .exists()
       .withMessage("O campo é obrigatório.")
       .isFloat({ gt: 0 })
       .withMessage("O valor deve ser maior que zero.")
       .bail()
-      .not()
-      .isString()
-      .withMessage("O valor desse campo não pode ser um texto."),
-
+      .not(),
     body("diasTrabalhadosSem")
       .exists()
       .withMessage("O campo é obrigatório.")
       .isInt({ min: 4, max: 7 })
       .withMessage("O valor deve ser entre 4 e 7 dias.")
       .bail()
-      .not()
-      .isString()
-      .withMessage("O valor desse campo não pode ser um texto."),
-
+      .not(),
     body("precoCombustivel")
       .exists()
       .withMessage("O campo é obrigatório.")
       .isFloat({ gt: 0 })
       .withMessage("O valor deve ser maior que zero.")
       .bail()
-      .not()
-      .isString()
-      .withMessage("O valor desse campo não pode ser um texto."),
-
+      .not(),
     body("consumo")
       .exists()
       .withMessage("O campo é obrigatório.")
       .isFloat({ gt: 0 })
       .withMessage("O valor deve ser maior que zero.")
       .bail()
-      .not()
-      .isString()
-      .withMessage("O valor desse campo não pode ser um texto."),
+      .not(),
   ];
 };
 
