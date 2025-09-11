@@ -7,7 +7,7 @@ const jwtSecret = process.env.JWT_SECRET;
 
 const generateToken = (id) => {
   return jwt.sign({ id }, jwtSecret, {
-    expiresIn: "7d",
+    expiresIn: "1d",
   });
 };
 
@@ -105,11 +105,9 @@ const login = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    return res
-      .status(500)
-      .json({
-        errors: ["Erro ao realizar Login, tente novamente mais tarde."],
-      });
+    return res.status(500).json({
+      errors: ["Erro ao realizar Login, tente novamente mais tarde."],
+    });
   }
 };
 

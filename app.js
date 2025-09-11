@@ -16,14 +16,25 @@ const app = express();
 // config JSON
 app.use(express.json());
 
-// Solve CORS
-app.use(
-  cors({
-    credentials: true,
-    origin: `http://localhost:${frontPort}`,
-    methods: ["GET", "POST", "PUT", "DELETE"],
-  })
-);
+// CORS
+const allowedOrigins = [
+  "https://road-to-profit.onrender.com/",
+  `http://localhost:${frontPort}`,
+];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 // DB Connection
 require("./models/index");
