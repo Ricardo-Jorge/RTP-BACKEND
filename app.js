@@ -18,7 +18,7 @@ app.use(express.json());
 
 // CORS
 const allowedOrigins = [
-  "https://road-to-profit.onrender.com/",
+  "https://road-to-profit.onrender.com",
   `http://localhost:${frontPort}`,
 ];
 
